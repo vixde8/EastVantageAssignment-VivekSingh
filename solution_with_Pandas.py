@@ -36,9 +36,7 @@ merged_df = pd.merge(merged_df, item_df, on='item_id')
 
 # Applying filters
 result_df = merged_df[(merged_df['age'] >= 18) & (merged_df['age'] <= 35)]
-print(result_df)
 result_df = result_df.groupby(['customer_id', 'age', 'item_id']).agg({'quantity': 'sum'}).reset_index()
-print(result_df)
 result_df = result_df[result_df['quantity'] > 0]
 
 # Renaming columns
