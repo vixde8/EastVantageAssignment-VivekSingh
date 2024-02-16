@@ -1,6 +1,18 @@
+'''
+Solution with Pandas - 
+
+There are 2 approaches to do this:
+
+Approach 1 - Pass the same sql query through pandas engine to get the desired output, but this does not leverage the actual properties
+             of pandas so we are not going through with it.
+
+Approach 2 - Read all the tables in dataframes and apply joins, aggregations and filters on those dataframes and then save the result 
+             into a csv file. This approach showcases use of different pandas properties.
+
+'''
+
 import pandas as pd
 from sqlalchemy import create_engine
-
 
 db_file = "xyz.db"     # Replace with a db with actual data and syntax Similar to xyz.db file attached
 
@@ -33,6 +45,6 @@ result_df = result_df[result_df['quantity'] > 0]
 result_df = result_df.rename(columns={'customer_id': 'Customer', 'age': 'Age', 'item_id': 'Item', 'quantity': 'Quantity'})
 
 file_path = 'output.csv'
-result_df.to_csv(file_path, index=False, sep=';')               # Writing the result to a ; delimited csv file
+result_df.to_csv(file_path, index=False, sep=';')               # Writing the result to a ';' delimited csv file
 
 print("Write Successful...")

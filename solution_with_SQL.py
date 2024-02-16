@@ -1,3 +1,11 @@
+'''
+Solution with SQL - 
+
+Approach used is straight forward, establishing connection to the sqlite db and executing the query that gives desired output.
+And csv_writer is used to write to write the contents of result query in csv file delimited by ;.
+
+'''
+
 import sqlite3, csv
 
 connection = sqlite3.connect("xyz.db")      # Replace with a db with actual data and syntax Similar to xyz.db file attached
@@ -25,7 +33,7 @@ csv_file_path = 'sql_solution_output.csv'
 delimiter = ';'
 header = ['Customer', 'Age', 'Item', 'Quantity']
 
-with open(csv_file_path, 'w', newline='') as csv_file:              # Writing the result to a ; delimited csv file
+with open(csv_file_path, 'w', newline='') as csv_file:              # Writing the result to a ';' delimited csv file
     csv_writer = csv.writer(csv_file, delimiter=delimiter)
     csv_writer.writerow(header)
     csv_writer.writerows(results)
