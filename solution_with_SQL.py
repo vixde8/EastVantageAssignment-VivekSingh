@@ -8,18 +8,17 @@ And csv_writer is used to write to write the contents of result query in csv fil
 
 import sqlite3, csv
 
-connection = sqlite3.connect("xyz.db")      # Replace with a db with actual data and syntax Similar to xyz.db file attached
+connection = sqlite3.connect("Data Engineer_ETL Assignment.db")
 cursor = connection.cursor()
 
 # SQL Solution for the problem statement
-my_sql_query = "SELECT c.customer_id AS Customer, c.age AS Age, i.item_id AS Item, SUM(o.quantity) AS Quantity \
-                FROM customer c \
+my_sql_query = "select c.customer_id, c.age , i.item_id, sum(o.quantity) \
+                FROM customers c \
                 INNER JOIN sales s ON c.customer_id = s.customer_id \
                 INNER JOIN orders o ON s.sales_id = o.sales_id \
                 INNER JOIN items i ON o.item_id = i.item_id \
-                WHERE c.age BETWEEN 18 AND 35 \
-                GROUP BY c.customer_id , c.age , i.item_id \
-                HAVING Quantity > 0;"
+                WHERE c.age BETWEEN 18 AND 35 and o.quantity  > 0 \
+                GROUP BY c.customer_id , c.age , i.item_id ;"
 
 cursor.execute(my_sql_query)
 results = cursor.fetchall()

@@ -14,12 +14,12 @@ Approach 2 - Read all the tables in dataframes and apply joins, aggregations and
 import pandas as pd
 from sqlalchemy import create_engine
 
-db_file = "xyz.db"     # Replace with a db with actual data and syntax Similar to xyz.db file attached
+db_file = "Data Engineer_ETL Assignment.db"  
 
 item_table = "items" 
 order_table = "orders"
 sales_table = "sales"
-customer_table = "customer"
+customer_table = "customers"
 
 engine = create_engine(f'sqlite:///{db_file}')
 
@@ -42,7 +42,7 @@ result_df = result_df[result_df['quantity'] > 0]
 # Renaming columns
 result_df = result_df.rename(columns={'customer_id': 'Customer', 'age': 'Age', 'item_id': 'Item', 'quantity': 'Quantity'})
 
-file_path = 'output.csv'
+file_path = 'pandas_solution_output.csv'
 result_df.to_csv(file_path, index=False, sep=';')               # Writing the result to a ';' delimited csv file
 
 print("Write Successful...")
